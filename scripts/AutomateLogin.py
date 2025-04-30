@@ -19,7 +19,7 @@ driver.find_element(By.ID, "password").send_keys("csancknaclk!")
 driver.find_element(By.CSS_SELECTOR, "button.radius").click()
 
 
-time.sleep(3)
+time.sleep(1)
 
 message = driver.find_element(By.ID, "flash").text
 
@@ -29,8 +29,10 @@ if "You logged into a secure area!" in message:
         EC.presence_of_element_located((By.CLASS_NAME, "flash.success"))
     )
     print("✅ SUCCESS: Logged in")
-elif "Your username is invalid!" or "Your password is invalid!" in message:
-    print("❌ ERROR: Invalid credentials")
+elif "Your username is invalid!" in message:
+    print("❌ ERROR: Invalid username")
+elif "Your password is invalid!" in message:
+    print("❌ ERROR: Invalid password")
 else:
     print("⚠️ Unknown result")
 
